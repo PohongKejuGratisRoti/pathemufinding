@@ -1,0 +1,27 @@
+services:
+  meshcentral:
+    image: ghcr.io/ylianst/meshcentral:latest
+    container_name: meshcentral
+    restart: unless-stopped
+
+    environment:
+      - HOSTNAME=172.16.10.124
+      - PORT=8443
+      - REDIR_PORT=0
+      - ALLOW_NEW_ACCOUNTS=true
+      - DYNAMIC_CONFIG=true
+
+    ports:
+      - "8443:8443"
+
+    volumes:
+      - meshcentral-data:/opt/meshcentral/meshcentral-data
+      - meshcentral-files:/opt/meshcentral/meshcentral-files
+      - meshcentral-web:/opt/meshcentral/meshcentral-web
+      - meshcentral-backups:/opt/meshcentral/meshcentral-backups
+
+volumes:
+  meshcentral-data:
+  meshcentral-files:
+  meshcentral-web:
+  meshcentral-backups:
